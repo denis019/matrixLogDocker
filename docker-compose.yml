@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+    matrix_php:
+        build: ./php
+        container_name: matrix_php
+        volumes:
+            - ./php/logs/:/var/logs/
