@@ -6,3 +6,4 @@ services:
         container_name: matrix_php
         volumes:
             - ./php/logs/:/var/logs/
+            - ../:/var/www/matrix-log
