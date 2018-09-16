@@ -10,3 +10,15 @@ services:
         environment:
             XDEBUG_CONFIG: "remote_host=172.17.0.1"
             PHP_IDE_CONFIG: "serverName=localhost"
+    matrix_mongodb:
+        build: ./mongodb
+        container_name: matrix_mongodb
+        restart: always
+        volumes:
+            - ./mongodb/data:/data/db
+        ports:
+            - "27017:27017"
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: docker
+            MONGO_INITDB_ROOT_PASSWORD: docker
+
