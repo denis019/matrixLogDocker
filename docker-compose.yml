@@ -15,10 +15,6 @@ services:
         container_name: matrix_mongodb
         restart: always
         volumes:
-            - ./mongodb/data:/data/db
+            - ./mongodb/data:/data/db:Z
         ports:
             - "27017:27017"
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: docker
-            MONGO_INITDB_ROOT_PASSWORD: docker
-

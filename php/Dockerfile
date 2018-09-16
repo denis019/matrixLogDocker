@@ -6,6 +6,7 @@ RUN apt-get update \
     && pecl install xdebug-2.6.0 \
     && docker-php-ext-enable xdebug \
     && apt-get install -y zip unzip \
+    && apt-get install -y libcurl4-openssl-dev pkg-config libssl-dev \
     && pecl install mongodb \
     && docker-php-ext-enable mongodb
 
