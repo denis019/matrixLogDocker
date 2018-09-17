@@ -1,15 +1,33 @@
 version: '3'
 
 services:
-    matrix_php:
-        build: ./php
-        container_name: matrix_php
+    nginx:
+        build: ./nginx
+        command: nginx -g "daemon off;"
+        container_name: matrix_nginx
         volumes:
-            - ./php/logs/:/var/logs/
+            - ./logs/:/var/log/nginx/site_logs/
+            - ../:/var/www/matrix-log
+        ports:
+            - "80:80"
+        links:
+            - matrix_php_lumen
+    matrix_php_cli:
+        build: ./php-cli
+        container_name: matrix_php_cli
+        volumes:
             - ../:/var/www/matrix-log
         environment:
             XDEBUG_CONFIG: "remote_host=172.17.0.1"
             PHP_IDE_CONFIG: "serverName=localhost"
+    matrix_php_lumen:
+        build: ./php-lumen
+        container_name: matrix_php_lumen
+        volumes:
+            - ../:/var/www/matrix-log
+        command: php-fpm
+        ports:
+            - "9000:9000"
     matrix_mongodb:
         build: ./mongodb
         container_name: matrix_mongodb

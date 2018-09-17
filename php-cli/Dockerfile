@@ -1,6 +1,5 @@
 FROM php:7.2-fpm
-WORKDIR /var/www/matrix-log
-EXPOSE 9000
+WORKDIR /var/www/matrix-log/MatrixLogImporter
 
 RUN apt-get update \
     && pecl install xdebug-2.6.0 \
